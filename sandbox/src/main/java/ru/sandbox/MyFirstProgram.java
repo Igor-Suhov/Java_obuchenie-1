@@ -1,6 +1,6 @@
 
 
-package com.example;
+package ru.sandbox;
 
 public class MyFirstProgram {
     public static void main(String[] args) {
