@@ -9,7 +9,17 @@ repositories {
     mavenCentral() 
 } 
  
-dependencies { 
+dependencies {
+   /// implementation("org.testng:testng:7.11.0")
+    implementation group: 'org.testng', name: 'testng', version: '7.11.0'
     // Здесь вы можете добавлять зависимости, например: 
     // testImplementation 'junit:junit:4.13.2' 
+}
+test {
+    // Настройте Gradle на использование TestNG для выполнения тестов
+    useTestNG() {
+        // Здесь вы можете добавить дополнительные параметры конфигурации TestNG, если это необходимо
+        // Например, для указания файла с конфигурацией TestNG:
+        // suites 'src/test/resources/testng.xml'
+    }
 }
