@@ -63,7 +63,7 @@ public class GroupCreationTes {
   private void submitGroupCreation() {
     driver.findElement(By.name("submit")).click();
   }
-
+ //jj
   private void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
