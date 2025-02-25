@@ -12,7 +12,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void returnToGroupPage() {
-    click(By.linkText("group page"));
+    click(By.linkText("groups"));
   }
 
   public void submitGroupCreation() {
@@ -36,5 +36,13 @@ public class GroupHelper extends HelperBase {
 
   public void selestGroup() {
     click(By.name("selected[]"));
+  }
+
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
+
+  public void submitGroupModyfication() {
+    click(By.name("update"));
   }
 }
