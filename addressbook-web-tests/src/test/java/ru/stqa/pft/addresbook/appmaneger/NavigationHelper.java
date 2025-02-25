@@ -7,10 +7,12 @@ public class NavigationHelper extends HelperBase {
 
 
   public NavigationHelper(WebDriver driver) {
-    super(driver);;
+    super(driver);
   }
 
   public void gotoGroupPage() {
     click(By.linkText("groups"));
   }
+
+
 }
