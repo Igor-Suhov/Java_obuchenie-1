@@ -14,6 +14,6 @@ public class SessionHelper extends HelperBase{
     driver.get("http://localhost/addressbook/group.php");
     type (By.name("user"),"admin");
     type(By.name("pass"),"secret");
-    click(By.id("LoginForm"));
+    click(By.xpath("//input[@value='Login']"));
   }
 }
