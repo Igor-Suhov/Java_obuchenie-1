@@ -1,16 +1,16 @@
 package ru.stqa.pft.addresbook.appmaneger;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ApplicationManager {
-  protected WebDriver driver;
-  private SessionHelper sessionHelper;
-  private  NavigationHelper navigationHelper ;
-  private  GroupHelper groupHelper;
+  public WebDriver driver;
+  protected ContactHelper contactHelper;
+  public SessionHelper sessionHelper;
+  public  NavigationHelper navigationHelper ;
+  public  GroupHelper groupHelper;
 
   public void init() {
     System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
@@ -19,6 +19,7 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     sessionHelper = new SessionHelper(driver);
+    contactHelper = new ContactHelper(driver);
     sessionHelper.login();
   }
 
@@ -45,5 +46,9 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
