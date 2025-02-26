@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ApplicationManager {
   public WebDriver driver;
-  protected ContactHelper contactHelper;
+  public ContactHelper contactHelper;
   public SessionHelper sessionHelper;
   public  NavigationHelper navigationHelper ;
   public  GroupHelper groupHelper;
