@@ -38,4 +38,11 @@ public class HelperBase {
     driver.get("http://localhost/addressbook/");
     driver.findElement(By.linkText("add new")).click();
   }
+
+  public void editClickContact() {
+    driver.get("http://localhost/addressbook/index.php");
+    driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img")).click();
+    driver.get("http://localhost/addressbook/edit.php?id=7");
+
+  }
 }
