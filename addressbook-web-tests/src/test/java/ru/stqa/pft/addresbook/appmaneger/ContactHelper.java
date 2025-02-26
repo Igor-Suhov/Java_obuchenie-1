@@ -13,7 +13,7 @@ public class ContactHelper  extends HelperBase{
   }
 
   public void saveDate() {
-    driver.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    By.xpath("//div[@id='content']/form/input[21]").findElement(driver).click();
   }
 
   public void editBook(ContactData contactData) {
@@ -23,4 +23,12 @@ public class ContactHelper  extends HelperBase{
     typeContact(By.name("mobile"), contactData.getNumber());
   }
 
+
+  public void deletionContact() {
+    driver.get("http://localhost/addressbook/");
+    driver.findElement(By.id("11")).click();
+    driver.findElement(By.xpath("//input[@value='Delete']")).click();
+
+
+  }
 }
