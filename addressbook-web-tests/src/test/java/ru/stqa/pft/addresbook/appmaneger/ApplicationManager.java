@@ -13,6 +13,11 @@ public class ApplicationManager {
   public  GroupHelper groupHelper;
 
   public void init() {
+    /*String browser = String.valueOf(CHROME);
+    if (CHROME == browser){
+      driver = new ChromeDriver();
+    } else if (browser == FIREFOX)
+      driver = new FirefoxDriver();*/
     System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
     /// System.setProperty("webdriver.chrome.driver", "C:/path/to/chromedriver.exe"); // Убедитесь, что путь к chromedriver указан
    driver = new ChromeDriver();
