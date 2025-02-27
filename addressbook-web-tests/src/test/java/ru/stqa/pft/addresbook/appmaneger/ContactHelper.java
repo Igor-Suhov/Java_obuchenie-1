@@ -16,13 +16,17 @@ public class ContactHelper  extends HelperBase{
     By.xpath("//div[@id='content']/form/input[21]").findElement(driver).click();
   }
 
-  public void editBook(ContactData contactData) {
+  public void editBook(ContactData contactData,boolean creation) {
     typeContact(By.name("firstname"), contactData.getName());
     typeContact(By.name("lastname"), contactData.getLastName());
     typeContact(By.name("address"), contactData.getCity());
     typeContact(By.name("mobile"), contactData.getNumber());
-  }
+    /*if (creation){ new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+  }else {
 
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }*/
+  }
 
   public void deletionContact() {
     driver.get("http://localhost/addressbook/");
