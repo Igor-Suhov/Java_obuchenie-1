@@ -45,4 +45,13 @@ public class HelperBase {
     driver.get("http://localhost/addressbook/edit.php?id=7");
 
   }
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      driver.findElement(locator);
+      return true;
+    } catch (NoSuchFieldError ex) {
+      return false;
+    }
+  }
 }
