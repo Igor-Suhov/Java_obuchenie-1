@@ -7,7 +7,7 @@ public class ContactModificationTest extends TestBase {
   @Test
   public void testContactModification (){
     app.getContactHelper().editClickContact();
-    app.getContactHelper().editBook(new ContactData("igor1", "Suhov1", "Voronech1", "890030785101"));
+    app.getContactHelper().editBook(new ContactData("igor", "Suhov", "Voronech", "89003078510",null) , true);
     app.getContactHelper().saveDate();
   }
 }
