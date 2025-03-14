@@ -26,7 +26,13 @@ public class GroupDeletionTest extends TestBase {
     System.out.println("Количество груп после добавления: " + after);
     Assert.assertEquals(after.size(), before.size() -1);
 
+    before.remove(before.size() -1);
+
+    //for (int i =0; i< after.size(); i++) {
+      Assert.assertEquals(before, after);
+    }
+
   }
-}
+
 
 
