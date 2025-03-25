@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTest extends TestBase {
@@ -15,21 +16,31 @@ public class GroupCreationTest extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelper().getGrouplist();
-     app.getGroupHelper().getGroupCount();
-   /// System.out.println("Количество груп до добавления: " + before);
+    //app.getGroupHelper().getGroupCount();
+   ///System.out.println("Количество груп до добавления: " + before);
+    GroupData group =new GroupData("test3", null,null);
     app.getGroupHelper().initGroupCreation();
-    app.getGroupHelper().fillGroupForm(new GroupData("test2", "test3", "test4"));
+    app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupCreation();
     app.getGroupHelper().returnToGroupPage();
-
+    ///app.getGroupHelper().getGroupCount();
     List<GroupData> after = app.getGroupHelper().getGrouplist();
    Assert.assertEquals(after.size(), before.size () +1);
-   app.getGroupHelper().getGroupCount();
+   int max =0 ;
+   for (GroupData g : after ){
+     if (g.getId()>max){
+       max=g.getId();
+     }
+   }
+   group.setId(max);
+   before.add(group);
+   Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+   //app.getGroupHelper().getGroupCount();
     //System.out.println("Количество груп после добавления: " + after);
     //Assert.assertEquals(after, before +1);
 
 
-
+///
 
   }
 }
