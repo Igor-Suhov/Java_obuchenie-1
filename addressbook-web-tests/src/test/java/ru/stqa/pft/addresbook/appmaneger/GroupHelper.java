@@ -25,7 +25,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  // jj
+
   public void fillGroupForm(GroupData groupData) {
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getHeader());
@@ -37,12 +37,13 @@ public class GroupHelper extends HelperBase {
   }
 
   public void deleteSelectGroups() {
-    click(By.xpath("//div[@id='content']/form/input[5]"));
-
+    //click(By.xpath("//div[@id='content']/form/input[5]"));
+    driver.findElement(By.name("delete")).click();
 
   }
 
   public void selectGroup(int index) {
+    //driver.findElements(By.name("selected[]")).get(index).click();
     click(By.name("selected[]"));
   }
 
@@ -59,7 +60,9 @@ public class GroupHelper extends HelperBase {
     List<WebElement> elements =driver.findElements(By.cssSelector("span.group"));
     for  (WebElement element : elements) {
       String name = element.getText();
-      GroupData group = new GroupData(name, null,null);
+      int id;
+      id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupData group = new GroupData(id, name, null, null);
       groups.add(group);
     }
     return groups;
