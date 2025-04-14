@@ -60,7 +60,7 @@ public class HelperBase {
   }
 
 
-  public void selectedContact( ) {
+  public void selectedContact(int i) {
     driver.findElement(By.name("selected[]")).click();
   }
 }
