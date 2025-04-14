@@ -26,7 +26,8 @@ repositories {
 dependencies {
     // Драйвер для Chrome
     //implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.29.0'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.30.0'
+    //implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.30.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.31.0'
     // implementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
     //implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.28.1'
     // SLF4J API
