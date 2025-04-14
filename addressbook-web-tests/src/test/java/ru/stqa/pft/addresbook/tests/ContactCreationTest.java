@@ -1,39 +1,40 @@
 package ru.stqa.pft.addresbook.tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.ContactData;
 
+import java.util.Comparator;
+import java.util.List;
 
 public class ContactCreationTest extends TestBase{
+
   @Test
   public void testContactCreation() {
-    int before = app.getContactHelper().getContactCount();
-    System.out.println("Количество контактов до добавления: " + before);
 
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().gotoNewContact();
-    app.getContactHelper().editBook(new ContactData("igor", "Suhov", "Voronech", "89003078510", "test2"), true);
+    ContactData contact = new ContactData("Igor", "Suhov", "Voronech", "8900",null);
+    app.getContactHelper().editBook(contact);
     app.getContactHelper().saveDate();
+    /*try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }*/
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() +1);
 
-    int after = app.getContactHelper().getContactCount();
-    System.out.println("Количество контактов после добавления: " + after);
-
-    Assert.assertEquals(after, before + 1);
+    before.add(contact);
+    Comparator<? super ContactData> byId= (g1, g2)-> Integer.compare(g1.getId(), g2.getId());
+before.sort(byId);
+after.sort(byId);
+    Assert.assertEquals(before,after);
   }
 }
 
 
-  /*@Test
-  public void testContactCreation () {
-    int before =app.getContactHelper().getContactCount();
-    app.getContactHelper().gotoNewContact();
-    app.getContactHelper().editBook(new ContactData("igor", "Suhov", "Voronech", "89003078510","test2"),true);
-    app.getContactHelper().saveDate();
-    int after =app.getContactHelper().getContactCount();
-    Assert.assertEquals(after,before+1);
-  }
 
-
-}*/
 
 
 
