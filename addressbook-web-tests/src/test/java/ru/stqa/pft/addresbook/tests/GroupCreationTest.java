@@ -18,7 +18,7 @@ public class GroupCreationTest extends TestBase {
     List<GroupData> before = app.getGroupHelper().getGrouplist();
     //app.getGroupHelper().getGroupCount();
    ///System.out.println("Количество груп до добавления: " + before);
-    GroupData group =new GroupData("test2", null,null);
+    GroupData group =new GroupData("test1", null,null);
     app.getGroupHelper().initGroupCreation();
     app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupCreation();
