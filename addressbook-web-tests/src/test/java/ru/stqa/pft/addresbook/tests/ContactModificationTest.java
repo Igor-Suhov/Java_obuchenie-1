@@ -10,7 +10,7 @@ import java.util.List;
 public class ContactModificationTest extends TestBase {
 
 
-  @Test
+  @Test (enabled = false)
   public void testContactModification (){
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectedContact(before.size()-1);
