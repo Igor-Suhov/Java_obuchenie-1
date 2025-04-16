@@ -14,25 +14,23 @@ public class GroupDeletionTest extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelper().getGrouplist();
-     app.getGroupHelper().getGroupCount();
+    app.getGroupHelper().getGroupCount();
     System.out.println("Количество груп до добавления: " + before);
 
-    app.getGroupHelper().selectGroup(before.size() -1);
+    app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().deleteSelectGroups();
 
     app.getGroupHelper().returnToGroupPage();
     List<GroupData> after = app.getGroupHelper().getGrouplist();
-     app.getGroupHelper().getGroupCount();
+    app.getGroupHelper().getGroupCount();
     System.out.println("Количество груп после добавления: " + after);
-    Assert.assertEquals(after.size(), before.size() -1);
+    Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(before.size() -1);
-
-    //for (int i =0; i< after.size(); i++) {
-      Assert.assertEquals(before, after);
-    }
-
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
   }
+}
+
 
 
 
