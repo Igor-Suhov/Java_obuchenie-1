@@ -17,12 +17,14 @@ public class GroupHelper extends HelperBase {
 
   public void returnToGroupPage() {
     click(By.linkText("groups"));
+    //driver.findElement(By.linkText("group page")).click();
    //driver.get("http://localhost/addressbook/group.php");
 
   }
 
   public void submitGroupCreation() {
-    click(By.name("submit"));
+    ///driver.findElement(By.name("new")).click();
+   click(By.name("submit"));
   }
 
 
@@ -38,12 +40,13 @@ public class GroupHelper extends HelperBase {
 
   public void deleteSelectGroups() {
     //click(By.xpath("//div[@id='content']/form/input[5]"));
-    driver.findElement(By.name("delete")).click();
+ driver.findElement(By.name("delete")).click();
+
 
   }
 
   public void selectGroup(int index) {
-    //driver.findElements(By.name("selected[]")).get(index).click();
+   /// driver.findElements(By.name("selected[]")).get(index).click();
     click(By.name("selected[]"));
   }
 
