@@ -7,9 +7,6 @@ public class ContactData {
   private final String name;
   private final String lastName;
   private final String city;
-
-
-
   private final String number;
   private final String group;
 
@@ -29,7 +26,6 @@ public class ContactData {
     this.number = number;
     this.group = group;
   }
-
 
   @Override
   public String toString() {
