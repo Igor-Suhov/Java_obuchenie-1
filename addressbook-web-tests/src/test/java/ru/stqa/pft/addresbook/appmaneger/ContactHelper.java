@@ -44,11 +44,13 @@ public class ContactHelper  extends HelperBase{
     typeContact(By.name("lastname"), contactData.getLastName());
     typeContact(By.name("address"), contactData.getCity());
     typeContact(By.name("mobile"), contactData.getNumber());
-    /*if (creation){ new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-  }else {
 
+    /*if (creation) {new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+
+    }else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }*/
+
   }
 
   public void deletionContact(int i) {
@@ -79,5 +81,6 @@ public class ContactHelper  extends HelperBase{
     driver.findElement(By.linkText("home")).click();
 
   }
+
 }
 
