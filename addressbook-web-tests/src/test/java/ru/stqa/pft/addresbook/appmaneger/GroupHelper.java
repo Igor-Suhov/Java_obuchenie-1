@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addresbook.model.GroupData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +43,33 @@ public class GroupHelper extends HelperBase {
 
 
   }
+  public  void modify(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
 
   public void selectGroup(int index) {
    /// driver.findElements(By.name("selected[]")).get(index).click();
     click(By.name("selected[]"));
   }
-
+  public void create(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+  public  void delete(int index) {
+    selectGroup(index);
+    deleteSelectGroups();
+    returnToGroupPage();
+  }
+  public boolean isThereAgroup() {return isElementPresent(By.name("selected[]"));}
+  public int getGroupCount() {
+    return driver.findElements(By.name("selected[]")).size();
+  }
   public void initGroupModification() {
     click(By.name("edit"));
   }
@@ -58,16 +78,15 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public List<GroupData> getGrouplist() {
+  public List<GroupData> List() {
     List<GroupData> groups=new ArrayList<GroupData>();
     List<WebElement> elements =driver.findElements(By.cssSelector("span.group"));
     for  (WebElement element : elements) {
       String name = element.getText();
-      int id;
-      id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(id, name, null, null);
-      groups.add(group);
+      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
   }
+
 }
