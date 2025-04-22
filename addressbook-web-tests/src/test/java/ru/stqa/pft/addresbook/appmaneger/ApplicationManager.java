@@ -1,10 +1,11 @@
+
+
 package ru.stqa.pft.addresbook.appmaneger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.Browser;
 
 public class ApplicationManager {
   public WebDriver driver;
@@ -12,23 +13,26 @@ public class ApplicationManager {
   public SessionHelper sessionHelper;
   public  NavigationHelper navigationHelper ;
   public  GroupHelper groupHelper;
-
-  public ApplicationManager(Browser chrome) {
-
-  }
+  public String browser;
 
   public ApplicationManager() {
 
   }
 
+  public ApplicationManager(String browser) {
+    this.browser= browser;
+
+  }
+
   public void init() {
 
-  /*  if ( browser.equals( Browser.FIREFOX)){
-      driver = new FirefoxDriver();
-    }else  if (browser.equals(Browser.CHROME)){
-      driver = new ChromeDriver();
+   /*if (browser.equals(Browser.CHROME)){{
+     driver = new ChromeDriver();
+    } else  if ( browser.equals( Browser.FIREFOX)){
+     driver = new FirefoxDriver();
     }*/
-
+///driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+   //driver.get("http://localhost/addressbook/");
    // System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
     /// System.setProperty("webdriver.chrome.driver", "C:/path/to/chromedriver.exe"); // Убедитесь, что путь к chromedriver указан
     driver = new ChromeDriver();
@@ -57,11 +61,11 @@ public class ApplicationManager {
 
 
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 
