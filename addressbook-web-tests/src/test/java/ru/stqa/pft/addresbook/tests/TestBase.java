@@ -1,6 +1,5 @@
 package ru.stqa.pft.addresbook.tests;
 
-import org.openqa.selenium.remote.Browser;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
@@ -8,7 +7,7 @@ import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
 public class TestBase {
 
   public static final ApplicationManager app = new ApplicationManager();
-  public static final ApplicationManager applicationManager = new ApplicationManager(Browser.CHROME);
+  public static final ApplicationManager applicationManager = new ApplicationManager();
 
   @BeforeSuite
   public void setUp() {
