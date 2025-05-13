@@ -60,7 +60,10 @@ public class HelperBase {
   }
 
 
+  public void goToHomePage(){
+    driver.findElement(By.linkText("home")).click();
 
+  };
   public void selectedContact(int i) {
     driver.findElement(By.name("selected[]")).click();
   }

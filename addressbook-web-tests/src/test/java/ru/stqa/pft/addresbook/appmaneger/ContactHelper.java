@@ -34,7 +34,7 @@ public class ContactHelper  extends HelperBase{
   public void saveDate() {
     ///driver.findElement(By.xpath("//div[@id='content']/form/input[22]")).click();
     By.xpath("//div[@id='content']/form/input[21]").findElement(driver).click();
-    //By.linkText("group page").findElement(driver).click();
+    ///By.linkText("group page").findElement(driver).click();
    // driver.findElement(By.linkText("home page")).click();
     driver.get("http://localhost/addressbook/index.php");
   }
@@ -64,7 +64,10 @@ public class ContactHelper  extends HelperBase{
    driver.switchTo().alert().accept();
     driver.findElement(By.linkText("home")).click();
   }
+   public void goToHomePage(){
+     driver.findElement(By.linkText("home")).click();
 
+   };
 
 
   public int getContactCount() {

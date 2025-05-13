@@ -7,7 +7,7 @@ import ru.stqa.pft.addresbook.model.ContactData;
 import java.util.List;
 
 public class ContactDeletionTest extends TestBase{
-  @Test (enabled = false)
+  @Test //(enabled = false)
   public void testContactDeletion(){
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().deletionContact(before.size()-1);
