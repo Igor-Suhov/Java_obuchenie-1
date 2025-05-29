@@ -39,9 +39,11 @@ public class HelperBase {
   }
 
   public void typeContact(By locator, String text) {
-    driver.findElement(locator).click();
-    driver.findElement(locator).clear();
+    //driver.findElement(locator).click();
+    //driver.findElement(locator).clear();
     driver.findElement(locator).sendKeys(text);
+
+
   }
 
   public void gotoNewContact() {
