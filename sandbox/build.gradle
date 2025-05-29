@@ -17,6 +17,7 @@ dependencies {
     // TestNG
     testImplementation 'org.testng:testng:7.11.0'
     testImplementation 'org.testng:testng:7.1.0'
+    testImplementation 'ch.qos.logback:logback-classic:1.4.14'
 }
 test {
     // Настройте Gradle на использование TestNG для выполнения тестов

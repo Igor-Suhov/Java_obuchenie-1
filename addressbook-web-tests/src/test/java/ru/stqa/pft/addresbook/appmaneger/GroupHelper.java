@@ -102,6 +102,9 @@ public class GroupHelper extends HelperBase {
     }
     return new Groups (groupCache);
   }
+  /*public boolean isThereAGroup(){
+    return driver.findElements(By.name("selector[]").size();
+  }*/
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());

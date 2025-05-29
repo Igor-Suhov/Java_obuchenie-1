@@ -18,13 +18,11 @@ public class ContactHelper  extends HelperBase{
 
       if (cells.size() >= 4) { // Минимум 4 ячейки: чекбокс, фамилия, имя, город
         int id = Integer.parseInt(
-                row.findElement(By.tagName("input")).getAttribute("value")
-        );
+                row.findElement(By.tagName("input")).getAttribute("value"));
 
-        // Извлекаем данные из конкретных ячеек
-        String lastName = cells.get(1).getText(); // Фамилия (2-я ячейка)
-        String firstName = cells.get(2).getText(); // Имя (3-я ячейка)
-        String city = cells.get(3).getText();      // Город (4-я ячейка)
+        String lastName = cells.get(1).getText();
+        String firstName = cells.get(2).getText();
+        String city = cells.get(3).getText();
 
         contacts.add(new ContactData()
                 .withId(id)
@@ -100,7 +98,7 @@ public class ContactHelper  extends HelperBase{
   };
 
 
-  public int getContactCount() {
+  public int count() {
     return driver.findElements(By.name("selected[]")).size();
 
   }
