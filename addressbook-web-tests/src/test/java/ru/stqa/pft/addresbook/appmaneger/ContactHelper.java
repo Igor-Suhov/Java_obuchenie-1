@@ -8,7 +8,8 @@ import ru.stqa.pft.addresbook.model.Contacts;
 
 import java.util.List;
 
-public class ContactHelper  extends HelperBase{
+public class ContactHelper  extends HelperBase {
+
   public Contacts all() {
     Contacts contacts = new Contacts();
     List<WebElement> rows = driver.findElements(By.cssSelector("tr[name='entry']"));
@@ -23,36 +24,18 @@ public class ContactHelper  extends HelperBase{
         String lastName = cells.get(1).getText();
         String firstName = cells.get(2).getText();
         String city = cells.get(3).getText();
+        String[] phones = cells.get(5).getText().split("\n");
 
-        contacts.add(new ContactData()
-                .withId(id)
-                .withName(firstName)    // Только имя
-                .withLastName(lastName) // Только фамилия
-                .withCity(city));       // Только город
+
+        contacts.add(new ContactData().withId(id).withName(firstName)  .withLastName(lastName)
+                .withCity(city).withhomePhone(phones[0]).withmobilePhone(phones[1]).withworkPhone(phones[2]));
+
       }
     }
     return contacts;
   }
 
-  /*public Contacts all(){ /// не может распарсить при такой реализации метода из строки , пришлось парсить по столбцам
-    Contacts contacts = new Contacts();
-    List<WebElement> elements = driver.findElements(By.cssSelector("tr[name='entry']"));
-    for (WebElement element : elements) {
-      String name = element.getText();
-      String lastName = element.getText();
-      String City = element.getText();
-      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      if (name != null && !name.isEmpty()) {
-        contacts.add(new ContactData().withId(id).withName(name));
-      }
-    }
-    return contacts;
-  }*/
-
-
-
-  public ContactHelper(WebDriver driver)
-  {
+  public ContactHelper(WebDriver driver) {
     super(driver);
 
   }
@@ -61,7 +44,7 @@ public class ContactHelper  extends HelperBase{
     ///driver.findElement(By.xpath("//div[@id='content']/form/input[22]")).click();
     By.xpath("//div[@id='content']/form/input[21]").findElement(driver).click();
     ///By.linkText("group page").findElement(driver).click();
-   // driver.findElement(By.linkText("home page")).click();
+    // driver.findElement(By.linkText("home page")).click();
     driver.get("http://localhost/addressbook/index.php");
   }
 
@@ -84,18 +67,23 @@ public class ContactHelper  extends HelperBase{
     driver.findElement(By.name("selected[]")).click();
     driver.findElement(By.xpath("//input[@value='Delete']")).click();*/
     driver.findElement(By.xpath("//input[@value='Delete']")).click();
-   driver.switchTo().alert().accept();
+    driver.switchTo().alert().accept();
     //driver.findElement(By.linkText("home")).click();
   }
 
 
-   public void selectContact(){
-     driver.get("http://localhost/addressbook/");
-     driver.findElement(By.name("selected[]")).click();
-   };
-  public void selectContactById(int id){
-    driver.findElement(By.cssSelector("input[value='"+id+"']")).click();
-  };
+  public void selectContact() {
+    driver.get("http://localhost/addressbook/");
+    driver.findElement(By.name("selected[]")).click();
+  }
+
+  ;
+
+  public void selectContactById(int id) {
+    driver.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
+  ;
 
 
   public int count() {
@@ -105,24 +93,27 @@ public class ContactHelper  extends HelperBase{
 
   public void editContact() {
     driver.findElement(By.xpath("//img[@alt='Edit']")).click();
-   /// driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img")).click();
+    /// driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img")).click();
   }
 
   public void returnToHomePage() {
     driver.findElement(By.linkText("home")).click();
 
   }
+
   public void modify(ContactData contact) {
     selectContactById(contact.getId());
     editContact();
     create(contact);
     saveDate();
   }
-  public  void delete(int index) {
+
+  public void delete(int index) {
     selectContact();
     deletionContact(index);
     returnToHomePage();
   }
+
   public void delete(ContactData group) {
     selectContactById(group.getId());
     deletionContact(group.getId());
@@ -130,5 +121,25 @@ public class ContactHelper  extends HelperBase{
   }
 
 
+  public ContactData infFromEditFrom(ContactData contact) {
+    initContactModificationBuId(contact.getId());
+    String name = driver.findElement(By.name("firsname")).getAttribute("value");
+    String lastname = driver.findElement(By.name("lastname")).getAttribute("value");
+    String home= driver.findElement(By.name("city")).getAttribute("value");
+    String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
+    String work = driver.findElement(By.name("work")).getAttribute("value");
+    driver.navigate().back();
+    return new ContactData().withId(contact.getId()).withName(name).withLastName(lastname).withhomePhone(home).withworkPhone(work).withmobilePhone(mobile);
+  }
+
+  private void initContactModificationBuId(int id) {
+    WebElement checkbox =driver.findElement(By.cssSelector(String.format("inout[value='&s']",id)));
+    WebElement row = checkbox.findElement(By.xpath("./../../"));
+    List<WebElement> cells= row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
+  }
 }
+
+
+
 
