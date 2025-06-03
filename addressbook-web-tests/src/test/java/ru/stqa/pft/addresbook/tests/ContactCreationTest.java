@@ -18,7 +18,11 @@ public class ContactCreationTest extends TestBase{
     ContactData contact = new ContactData()
             .withName("Igor1")
             .withLastName("Suhov1")
-            .withCity("Voronech1");
+            .withCity("Voronech1")
+                    .withhomePhone("123")
+                            .withmobilePhone("345")
+                                   .withworkPhone("678");
+
             //.withNumber("89001")
             //.withGroup(null);
 

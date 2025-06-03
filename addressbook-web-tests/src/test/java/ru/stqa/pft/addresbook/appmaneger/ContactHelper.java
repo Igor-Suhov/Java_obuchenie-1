@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactHelper  extends HelperBase {
 
-  public Contacts all() {
+ /* public Contacts all() {
     Contacts contacts = new Contacts();
     List<WebElement> rows = driver.findElements(By.cssSelector("tr[name='entry']"));
 
@@ -27,14 +27,44 @@ public class ContactHelper  extends HelperBase {
         String[] phones = cells.get(5).getText().split("\n");
 
 
-        contacts.add(new ContactData().withId(id).withName(firstName)  .withLastName(lastName)
+        contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName)
                 .withCity(city).withhomePhone(phones[0]).withmobilePhone(phones[1]).withworkPhone(phones[2]));
 
       }
     }
     return contacts;
-  }
+  }*/
+ public Contacts all() {
+   Contacts contacts = new Contacts();
+   List<WebElement> rows = driver.findElements(By.cssSelector("tr[name='entry']"));
 
+   for (WebElement row : rows) {
+     List<WebElement> cells = row.findElements(By.tagName("td"));
+
+     if (cells.size() >= 6) { // Проверяем, что есть ячейка с телефонами (6-я)
+       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+       String lastName = cells.get(1).getText();
+       String firstName = cells.get(2).getText();
+       String city = cells.get(3).getText();
+       String[] phones = cells.get(5).getText().split("\n");
+
+       // Безопасное извлечение телефонов
+       String homePhone = phones.length > 0 ? phones[0] : "";
+       String mobilePhone = phones.length > 1 ? phones[1] : "";
+       String workPhone = phones.length > 2 ? phones[2] : "";
+
+       contacts.add(new ContactData()
+               .withId(id)
+               .withName(firstName)
+               .withLastName(lastName)
+               .withCity(city)
+               .withhomePhone(homePhone)
+               .withmobilePhone(mobilePhone)
+               .withworkPhone(workPhone));
+     }
+   }
+   return contacts;
+ }
   public ContactHelper(WebDriver driver) {
     super(driver);
 
@@ -52,6 +82,9 @@ public class ContactHelper  extends HelperBase {
     typeContact(By.name("firstname"), contactData.getName());
     typeContact(By.name("lastname"), contactData.getLastName());
     typeContact(By.name("address"), contactData.getCity());
+    typeContact(By.name("home"), contactData.getHomePhone());
+    typeContact(By.name("mobile"), contactData.getMobilePhone());
+    typeContact(By.name("work"), contactData.getWorkPhone());
     ///typeContact(By.name("mobile"), contactData.getNumber());
 
     /*if (creation) {new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -122,20 +155,21 @@ public class ContactHelper  extends HelperBase {
 
 
   public ContactData infFromEditFrom(ContactData contact) {
-    initContactModificationBuId(contact.getId());
-    String name = driver.findElement(By.name("firsname")).getAttribute("value");
+    initContactModificationById(contact.getId());
+    String name = driver.findElement(By.name("firstname")).getAttribute("value");
     String lastname = driver.findElement(By.name("lastname")).getAttribute("value");
-    String home= driver.findElement(By.name("city")).getAttribute("value");
+    String home = driver.findElement(By.name("home")).getAttribute("value");
     String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
     String work = driver.findElement(By.name("work")).getAttribute("value");
     driver.navigate().back();
     return new ContactData().withId(contact.getId()).withName(name).withLastName(lastname).withhomePhone(home).withworkPhone(work).withmobilePhone(mobile);
   }
 
-  private void initContactModificationBuId(int id) {
-    WebElement checkbox =driver.findElement(By.cssSelector(String.format("inout[value='&s']",id)));
-    WebElement row = checkbox.findElement(By.xpath("./../../"));
-    List<WebElement> cells= row.findElements(By.tagName("td"));
+
+  private void initContactModificationById(int id) {
+    WebElement checkbox = driver.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
   }
 }

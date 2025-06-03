@@ -14,6 +14,7 @@ public class ContactData {
   private  String mobilePhone;
   private  String workPhone;
   private  String group;
+  private  String number;
 
 
   public int  getId() {
@@ -111,4 +112,25 @@ public class ContactData {
     return this;
 
   }
+  public ContactData withNumber(String number) {
+    this.number = number;
+    return  this;
+  }
+
+
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+
+  }
+
+
 }
