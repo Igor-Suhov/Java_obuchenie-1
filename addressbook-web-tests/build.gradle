@@ -41,9 +41,20 @@ dependencies {
     testImplementation 'org.testng:testng:7.11.0'
     //должно решить проблему с SlF4J
     implementation 'ch.qos.logback:logback-classic:1.2.12'
+    implementation group: 'com.beust', name: 'jcommander', version: '1.82'
 
 ///конфигурация для запуска TestNG
     test {
         useTestNG()
     }
+
+
+    task generateGroups(type: JavaExec) {
+        classpath = sourceSets.main.runtimeClasspath
+        mainClass = "ru.stqa.pft.addresbook.generators.GroupDataGenerator"
+        args "-c", "5", "-F", "groups.csv"
+
+
+        generateGroups.dependsOn classes
 }
+    }

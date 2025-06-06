@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 public class HelperBase {
   public WebDriver driver;
 
@@ -68,5 +70,10 @@ public class HelperBase {
   };
   public void selectedContact(int i) {
     driver.findElement(By.name("selected[]")).click();
+  }
+  public void attach(By locator, File file) {
+    if (file != null) {
+      driver.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
   }
 }

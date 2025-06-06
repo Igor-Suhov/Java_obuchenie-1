@@ -28,7 +28,10 @@ public class ContactModificationTest extends TestBase {
             withName("Igor1").
             withLastName("Suhov1").
             withCity("Voronech1").
-            withNumber("89001").
+            withNumber("89001")
+            .withhomePhone("345")
+            .withmobilePhone("678")
+            .withworkPhone("910").
           withGroup(null) ;
 
     app.contact().modify(contact);
@@ -40,6 +43,7 @@ public class ContactModificationTest extends TestBase {
 
 
   }
+
 
 
 

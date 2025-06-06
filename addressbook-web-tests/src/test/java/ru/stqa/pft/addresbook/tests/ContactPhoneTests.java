@@ -14,11 +14,20 @@ public class ContactPhoneTests extends TestBase{
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditFrom=app.contact().infFromEditFrom(contact);
 
-    assertThat(contact.getHomePhone(), equalTo(contactInfoFromEditFrom.getHomePhone()));
-    assertThat(contact.getMobilePhone(), equalTo(contactInfoFromEditFrom.getMobilePhone()));
-    assertThat(contact.getWorkPhone(), equalTo(contactInfoFromEditFrom.getWorkPhone()));
+    assertThat(contact.getHomePhone(), equalTo(cleaned (contactInfoFromEditFrom.getHomePhone())));
+    assertThat(contact.getMobilePhone(), equalTo(cleaned (contactInfoFromEditFrom.getMobilePhone())));
+    assertThat(contact.getWorkPhone(), equalTo(cleaned (contactInfoFromEditFrom.getWorkPhone())));
 
 
   }
+
+  public String cleaned(String phone) {
+    if (phone == null) return "";
+    // Удаляем все нецифровые символы, кроме плюса в начале
+    return phone.replaceAll("[^+\\d]", "");
+  }
+ /* public String cleaned (String phone){
+    return phone.replaceAll("\\s","").replaceAll("-[()]","");
+  }/*/
 
 }
