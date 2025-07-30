@@ -22,8 +22,6 @@ public class HelperBase {
     if (text != null) {
       String existingText = driver.findElement(locator).getAttribute("value");
       if (!text.equals(existingText)) {
-
-
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
       }

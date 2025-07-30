@@ -6,14 +6,20 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addresbook.model.GroupData;
 import ru.stqa.pft.addresbook.model.Groups;
 
-import java.util.*;
+import java.time.Duration;
+import java.util.List;
 
 public class GroupHelper extends HelperBase {
-
   public GroupHelper(WebDriver driver) {
     super(driver);
-
+    // Устанавливаем неявное ожидание при создании GroupHelper
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
   }
+
+  /*public GroupHelper(WebDriver driver) {
+    super(driver);
+
+  }*/
 
   public void returnToGroupPage() {
     click(By.linkText("groups"));
@@ -66,6 +72,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    System.out.println("Group created: " + group.getName());  // Логирование
     returnToGroupPage();
   }
   public  void delete(int index) {
@@ -90,6 +97,7 @@ public class GroupHelper extends HelperBase {
 
 
   public Groups all() {
+    groupCache =null;
     if (groupCache != null){
       return new Groups(groupCache);
     }
