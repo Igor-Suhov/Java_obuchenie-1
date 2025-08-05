@@ -45,13 +45,18 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.13.1'
 
 ///конфигурация для запуска TestNG
+    test {
+        useTestNG()
+    }
+
     task testGroups(type: Test) {
         useTestNG()
-        suites 'src/test/resources/testng-groups.xml'
+        options.suites("src/test/resources/testng-groups.xml")
     }
+
     task testContacts(type: Test) {
         useTestNG()
-        suites 'src/test/resources/testng-contacts.xml'
+        options.suites("src/test/resources/testng-contacts.xml")
     }
     task generateGroups(type: JavaExec) {
         classpath = sourceSets.main.runtimeClasspath
