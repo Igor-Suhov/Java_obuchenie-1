@@ -22,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class GroupCreationTest extends TestBase {
+
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
     try
@@ -53,8 +54,6 @@ public class GroupCreationTest extends TestBase {
       XStream xStream = new XStream();
       xStream.processAnnotations(GroupData.class);
       xStream.allowTypes(new Class[]{GroupData.class});
-      @SuppressWarnings("unchecked")
-      ///xStream.fromXML(xml);
       List<GroupData> groups = (List<GroupData>) xStream.fromXML(xml);
       return  groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
@@ -62,6 +61,8 @@ public class GroupCreationTest extends TestBase {
 
   @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) {
+
+
     app.goTo().groupPage();
     Groups before = app.group().all();
     app.group().create(group);
@@ -72,10 +73,9 @@ public class GroupCreationTest extends TestBase {
                     group.withId(after.stream()
                             .mapToInt(GroupData::getId)
                             .max()
-                            .getAsInt()
-                    )
-            )
-    ));
+                            .getAsInt()))));
+
+
   }
 }
 
