@@ -83,7 +83,6 @@ public class ContactData {
             ", city='" + city + '\'' +
             '}';
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -91,52 +90,39 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(city, that.city);
   }
-
   @Override
   public int hashCode() {
     return Objects.hash(id, name, lastName, city);
   }
-
   public ContactData withName(String name) {
     this.name = name;
     return this;
 
   }
-
   public ContactData withLastName(String lastName) {
     this.lastName = lastName;
     return this;
 
   }
-
   public ContactData withCity(String city) {
     this.city = city;
     return this;
-
   }
-
-
-
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
-
   }
   public ContactData withNumber(String number) {
     this.number = number;
     return  this;
   }
 
-
-
   public String getHomePhone() {
     return homePhone;
   }
-
   public String getWorkPhone() {
     return workPhone;
   }
-
   public String getMobilePhone() {
     return mobilePhone;
 

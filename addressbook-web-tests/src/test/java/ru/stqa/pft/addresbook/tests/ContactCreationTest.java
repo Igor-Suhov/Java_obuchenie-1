@@ -40,11 +40,9 @@ public class ContactCreationTest extends TestBase{
             .max()
             .getAsInt()))));
   }
- /* @Test
+ /* @Test//Для определения текещей дериктории
   public void testCurrentDir(){
     File currentDir = new File(".");
-
-
     System.out.println( currentDir.getAbsolutePath());
     File photo = new File("src/test/resources/stru.jpg");
     System.out.println(photo.getAbsolutePath());

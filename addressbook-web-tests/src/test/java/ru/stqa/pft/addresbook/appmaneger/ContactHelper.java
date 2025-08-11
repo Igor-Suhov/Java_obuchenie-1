@@ -9,31 +9,6 @@ import ru.stqa.pft.addresbook.model.Contacts;
 import java.util.List;
 
 public class ContactHelper  extends HelperBase {
-
- /* public Contacts all() {
-    Contacts contacts = new Contacts();
-    List<WebElement> rows = driver.findElements(By.cssSelector("tr[name='entry']"));
-
-    for (WebElement row : rows) {
-      List<WebElement> cells = row.findElements(By.tagName("td")); // Получаем ячейки (td), а не строки (tr)
-
-      if (cells.size() >= 4) { // Минимум 4 ячейки: чекбокс, фамилия, имя, город
-        int id = Integer.parseInt(
-                row.findElement(By.tagName("input")).getAttribute("value"));
-
-        String lastName = cells.get(1).getText();
-        String firstName = cells.get(2).getText();
-        String city = cells.get(3).getText();
-        String[] phones = cells.get(5).getText().split("\n");
-
-
-        contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName)
-                .withCity(city).withhomePhone(phones[0]).withmobilePhone(phones[1]).withworkPhone(phones[2]));
-
-      }
-    }
-    return contacts;
-  }*/
  public Contacts all() {
    Contacts contacts = new Contacts();
    List<WebElement> rows = driver.findElements(By.cssSelector("tr[name='entry']"));
