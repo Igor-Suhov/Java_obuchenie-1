@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Igor 0",
+    "lastName": "Suhov 0",
+    "city": "Voronech 0",
+    "homePhone": "123 0",
+    "mobilePhone": "123 0",
+    "workPhone": "123 0"
+  },
+  {
+    "name": "Igor 1",
+    "lastName": "Suhov 1",
+    "city": "Voronech 1",
+    "homePhone": "123 1",
+    "mobilePhone": "123 1",
+    "workPhone": "123 1"
+  },
+  {
+    "name": "Igor 2",
+    "lastName": "Suhov 2",
+    "city": "Voronech 2",
+    "homePhone": "123 2",
+    "mobilePhone": "123 2",
+    "workPhone": "123 2"
+  },
+  {
+    "name": "Igor 3",
+    "lastName": "Suhov 3",
+    "city": "Voronech 3",
+    "homePhone": "123 3",
+    "mobilePhone": "123 3",
+    "workPhone": "123 3"
+  },
+  {
+    "name": "Igor 4",
+    "lastName": "Suhov 4",
+    "city": "Voronech 4",
+    "homePhone": "123 4",
+    "mobilePhone": "123 4",
+    "workPhone": "123 4"
+  }
+]
