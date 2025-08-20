@@ -8,17 +8,16 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.ContactData;
 import ru.stqa.pft.addresbook.model.Contacts;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase{
+
   @DataProvider
 
   public Iterator<Object[]> validContactsFromJson() throws IOException {
@@ -97,7 +96,6 @@ public class ContactCreationTest extends TestBase{
             .mapToInt(ContactData::getId)
             .max()
             .getAsInt()))));
-
   }
  /* @Test//Для определения текещей дериктории
   public void testCurrentDir(){

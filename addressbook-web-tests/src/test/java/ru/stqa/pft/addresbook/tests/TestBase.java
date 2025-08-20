@@ -12,10 +12,10 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class TestBase {
-
+  Logger logger= LoggerFactory.getLogger(TestBase.class);
   public static final ApplicationManager app = new ApplicationManager();
   public static final ApplicationManager applicationManager = new ApplicationManager();
-   Logger logger = LoggerFactory.getLogger(TestBase.class);
+
 
   @BeforeSuite
   public void setUp() {

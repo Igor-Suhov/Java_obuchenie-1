@@ -68,8 +68,6 @@ public class GroupCreationTest extends TestBase {
                             .mapToInt(GroupData::getId)
                             .max()
                             .getAsInt()))));
-
-
   }
 }
 
