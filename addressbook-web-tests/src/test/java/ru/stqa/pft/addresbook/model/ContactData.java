@@ -3,10 +3,14 @@ package ru.stqa.pft.addresbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
 
 import java.io.File;
 import java.util.Objects;
+@Entity
+@Table(name = "")
 @XStreamAlias("contact")
 public class ContactData {
 

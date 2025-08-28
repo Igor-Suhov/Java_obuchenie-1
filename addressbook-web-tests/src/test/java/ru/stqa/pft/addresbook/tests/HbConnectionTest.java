@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addresbook.model.ContactData;
 import ru.stqa.pft.addresbook.model.GroupData;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class HbConnectionTest {
     }
   }
 
-  @Test
+  @Test (enabled = true)
   public void testHbConnection() {
     System.out.println("Starting testHbConnection...");
 
@@ -58,4 +59,24 @@ public class HbConnectionTest {
   }
 }
 
+@Test
+
+public void testHbConnectionContact() {
+  System.out.println("Starting testHbConnection...");
+
+  try (Session session = sessionFactory.openSession()) {
+    session.beginTransaction();
+
+    List<ContactData> contacts = session.createQuery("from ContactData", ContactData.class)
+            .getResultList();
+
+    System.out.println("Found " + contacts.size() + " contacts:");
+    for (ContactData contact : contacts) {
+      System.out.println(contact);
+    }
+
+    session.getTransaction().commit();
+  }
+}
+}
 
