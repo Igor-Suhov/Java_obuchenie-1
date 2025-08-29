@@ -3,44 +3,52 @@ package ru.stqa.pft.addresbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
 
 import java.io.File;
 import java.util.Objects;
 @Entity
-@Table(name = "")
+@Table(name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
 
-
+  @Transient
   public ApplicationManager app;
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private   int id =Integer.MAX_VALUE;;
   @Expose
+  @Column(name = "firstname")
   private  String name;
   @Expose
+  @Column(name = "lastname")
   private  String lastName;
   @Expose
+  @Column(name = "address")
   private  String city;
   @Expose
+  @Column(name = "home")
   private  String homePhone;
   @Expose
+  @Column(name = "mobile")
   private  String mobilePhone;
   @Expose
+  @Column(name = "work")
   private  String workPhone;
-
+@Transient
   private  String group;
+  @Transient
   private  String number;
-  private File photo;
-
+  @Column(name = "photo")
+private String photo;
   public File getPhoto() {
-    return photo;
+    return new File(photo) ;
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 

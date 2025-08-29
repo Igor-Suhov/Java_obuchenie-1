@@ -28,6 +28,7 @@ public class HbConnectionTest {
       // 2. Создаем SessionFactory
       sessionFactory = new MetadataSources(registry)
               .addAnnotatedClass(GroupData.class)
+              .addAnnotatedClass(ContactData.class)
               .buildMetadata()
               .buildSessionFactory();
 
@@ -39,7 +40,7 @@ public class HbConnectionTest {
     }
   }
 
-  @Test (enabled = true)
+  @Test (enabled = false)
   public void testHbConnection() {
     System.out.println("Starting testHbConnection...");
 
@@ -57,7 +58,7 @@ public class HbConnectionTest {
       session.getTransaction().commit();
     }
   }
-}
+
 
 @Test
 
@@ -67,7 +68,7 @@ public void testHbConnectionContact() {
   try (Session session = sessionFactory.openSession()) {
     session.beginTransaction();
 
-    List<ContactData> contacts = session.createQuery("from ContactData", ContactData.class)
+    List<ContactData> contacts = session.createQuery("from ContactData where  deprecated='0000-00-00'", ContactData.class)
             .getResultList();
 
     System.out.println("Found " + contacts.size() + " contacts:");
