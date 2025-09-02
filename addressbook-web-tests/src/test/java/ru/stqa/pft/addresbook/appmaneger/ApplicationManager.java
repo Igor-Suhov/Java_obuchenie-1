@@ -14,6 +14,7 @@ public class ApplicationManager {
   public  NavigationHelper navigationHelper ;
   public  GroupHelper groupHelper;
   public String browser;
+  private DbHelper dbHelper;
 
   public ApplicationManager() {
 
@@ -25,7 +26,7 @@ public class ApplicationManager {
   }
 
   public void init() {
-
+    dbHelper = new DbHelper();
    /*if (browser.equals(Browser.CHROME)){{
      driver = new ChromeDriver();
     } else  if ( browser.equals( Browser.FIREFOX)){
@@ -42,9 +43,8 @@ public class ApplicationManager {
     sessionHelper = new SessionHelper(driver);
     contactHelper = new ContactHelper(driver);
     sessionHelper.login();
+
   }
-
-
 
   public void stop() {
    driver.quit();
@@ -58,9 +58,7 @@ public class ApplicationManager {
       return false;
     }
   }
-
-
-
+  
   public GroupHelper group() {
     return groupHelper;
   }
@@ -71,5 +69,8 @@ public class ApplicationManager {
 
   public ContactHelper contact() {
     return contactHelper;
+  }
+  public DbHelper db (){
+    return dbHelper;
   }
 }

@@ -19,7 +19,7 @@ public class GroupDeletionTest extends TestBase {
 
     }
   }
-  @Test (enabled = false)
+  @Test (enabled = true)
   public void testGroupDeletion() {
 
     app.goTo().groupPage();

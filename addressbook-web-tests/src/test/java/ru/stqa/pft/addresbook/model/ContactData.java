@@ -8,6 +8,7 @@ import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
 
 import java.io.File;
 import java.util.Objects;
+
 @Entity
 @Table(name = "addressbook")
 @XStreamAlias("contact")
@@ -41,16 +42,19 @@ public class ContactData {
   private  String group;
   @Transient
   private  String number;
+
   @Column(name = "photo")
 private String photo;
-  public File getPhoto() {
-    return new File(photo) ;
-  }
+public File getPhoto() {
+        // Добавляем проверку на null
+        return photo != null ? new File(photo) : null;
+    }
 
-  public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
-  }
+    public ContactData withPhoto(File photo) {
+        // Добавляем проверку на null
+        this.photo = photo != null ? photo.getPath() : null;
+        return this;
+    }
 
   public int  getId() {
     return id;
@@ -113,12 +117,16 @@ private String photo;
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(city, that.city);
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(city, that.city);
   }
   @Override
   public int hashCode() {
     return Objects.hash(id, name, lastName, city);
   }
+
   public ContactData withName(String name) {
     this.name = name;
     return this;
