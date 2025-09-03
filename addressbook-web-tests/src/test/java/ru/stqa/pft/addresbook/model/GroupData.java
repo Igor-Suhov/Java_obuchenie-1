@@ -3,11 +3,9 @@ package ru.stqa.pft.addresbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Objects;
 
 @XStreamAlias("group")
@@ -69,9 +67,15 @@ public class GroupData {
     this.id = id;
     return this;
   }
+  @ManyToMany(mappedBy = "groups")
+  private Set<ContactData> contacts = new HashSet<ContactData>();
   public GroupData withName(String name) {
     this.name = name;
     return this;
+  }
+
+  public Set<ContactData> getContacts() {
+    return contacts;
   }
 
   public GroupData withHeader(String header) {

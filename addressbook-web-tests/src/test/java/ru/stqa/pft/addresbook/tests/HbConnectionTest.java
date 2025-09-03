@@ -75,6 +75,7 @@ public void testHbConnectionContact() {
     System.out.println("Found " + contacts.size() + " contacts:");
     for (ContactData contact : contacts) {
       System.out.println(contact);
+      System.out.println(contact.getGroups());
     }
 
     session.getTransaction().commit();

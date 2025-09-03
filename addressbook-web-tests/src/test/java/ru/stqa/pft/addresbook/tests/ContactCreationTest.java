@@ -87,6 +87,7 @@ public class ContactCreationTest extends TestBase{
 
   @Test (dataProvider = "validContactsFromJson")///(enabled = false)
   public void testContactCreation(ContactData contact) {
+    //Groups groups =app.db().groups();
     Contacts before = app.contact().all();
     app.contact().gotoNewContact();
     app.contact().create(contact);
@@ -99,14 +100,6 @@ public class ContactCreationTest extends TestBase{
             .max()
             .getAsInt()))));
   }
- /* @Test//Для определения текещей дериктории
-  public void testCurrentDir(){
-    File currentDir = new File(".");
-    System.out.println( currentDir.getAbsolutePath());
-    File photo = new File("src/test/resources/stru.jpg");
-    System.out.println(photo.getAbsolutePath());
-    System.out.println(photo.exists());
-  }*/
 }
 
 

@@ -31,8 +31,7 @@ public class ContactModificationTest extends TestBase {
             withNumber("89001")
             .withhomePhone("345")
             .withmobilePhone("678")
-            .withworkPhone("910").
-          withGroup(null) ;
+            .withworkPhone("910");
 
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo (before.size()));

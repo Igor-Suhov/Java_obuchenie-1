@@ -5,9 +5,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import jakarta.persistence.*;
 import ru.stqa.pft.addresbook.appmaneger.ApplicationManager;
-
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -38,8 +39,7 @@ public class ContactData {
   @Expose
   @Column(name = "work")
   private  String workPhone;
-@Transient
-  private  String group;
+
   @Transient
   private  String number;
 
@@ -55,6 +55,12 @@ public File getPhoto() {
         this.photo = photo != null ? photo.getPath() : null;
         return this;
     }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups",
+            joinColumns =@JoinColumn (name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
 
   public int  getId() {
     return id;
@@ -99,8 +105,9 @@ public File getPhoto() {
     this.workPhone = workPhone;
     return this;}
 
-  public String getGroup() {
-    return group;
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   @Override
@@ -141,10 +148,7 @@ public File getPhoto() {
     this.city = city;
     return this;
   }
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+
   public ContactData withNumber(String number) {
     this.number = number;
     return  this;
